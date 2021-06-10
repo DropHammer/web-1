@@ -296,3 +296,8 @@ body {
   left: 3.4rem;
   top: 12.26rem;
 }
+.dowebok{
+	animation-duration: 2s;     //动画持续时间
+	animation-delay: 1s;      //动画延迟时间   
+ /*   animate-iteration-count: 2;    //动画执行次数*/
+}

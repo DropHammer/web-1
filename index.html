@@ -6,15 +6,19 @@
     <link rel="stylesheet" href="css/u-reset.min.css" />
     <title>Nike</title>
     <link rel="stylesheet" href="css/swiper.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
     <link rel="stylesheet" href="css/index.css" />
     <script src="js/swiper.min.js"></script>
+	<script src="js/swiper.animate.min.js"></script>
   </head>
   <body>
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide list page1">
           <img class="photo1" src="img/bg.png" />
-          <img class="photo2" src="img/shoes-hou.png" />
+          <div class="animated bounce" id="dowebok">
+          <img class="photo2 ani" src="img/shoes-hou.png" />
+          </div>
           <div class="tag">
             <p class="info-test1">NIKE AIR</p>
             <p class="info-test2">MAX 270 PRM</p>
@@ -49,8 +53,12 @@
               <p class="embeged-text2">时刻活力型走</p>
             </div>
           </div>
+          <div class="animate__flipInY" id="dowebok">
           <img class="photo3" src="img/shoes-ce.png" />
+          </div>
+          <div class="animate__rotateInDownLeft" id="dowebol">
           <img class="photo4" src="img/up.png" />
+          </div>
           <div class="tag">
             <p class="info-test1">NIKE AIR</p>
             <p class="info-test2">MAX 270 PRM</p>
@@ -64,8 +72,8 @@
         <div class="swiper-slide page3">
           <div class="tag3"><p class="info-test1">产品配色</p></div>
           <div class="bg3"><div class="divder3"></div></div>
-          <img class="photo5" src="img/shoes1.png" />
-          <img class="photo6" src="img/shoes2.png" />
+          <img class="photo5 ani" src="img/shoes1.png" swiper-animate-effect="slideInLeft"swiper-animate-duration="1s" swiper-animate-delay="0.2s"/>
+          <img class="photo6 ani" src="img/shoes2.png" swiper-animate-effect="slideInRight"swiper-animate-duration="1s" swiper-animate-delay="0.2s"/>
           <div class="tag2">
             <p class="info-test1">NIKE AIR</p>
             <p class="info-test2">MAX 270 PRM</p>
@@ -78,11 +86,21 @@
         </div>
       </div>
     </div>
-    <script>
-      var mySwiper = new Swiper(".swiper-container", {
-        direction: "vertical",
-        loop: !0,
-      });
-    </script>
+    <script>        
+	  var mySwiper = new Swiper ('.swiper-container', {
+	    direction: 'vertical', // 垂直切换选项
+	    loop: true, // 循环模式选项
+	    on:{
+            init:function(){
+                swiperAnimateCache(this); //隐藏动画元素 
+                swiperAnimate(this); //初始化完成开始动画
+              }, 
+            slideChangeTransitionEnd:function(){ 
+                swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+                //this.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); 动画只展现一次，去除ani类名
+              } 
+            }
+	  })        
+	</script>
   </body>
 </html>
